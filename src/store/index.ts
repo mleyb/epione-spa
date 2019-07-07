@@ -1,8 +1,7 @@
-import { applyMiddleware, combineReducers, createStore, compose, Store } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore, Store } from "redux";
 import createSagaMiddleware from 'redux-saga';
+import { dailyReportReducer, IDailyReportState } from "../reducers";
 import { rootSaga } from "../sagas";
-
-import { IDailyReportState, dailyReportReducer } from "../reducers";
 
 export interface IAppState {
     readonly dailyReportState: IDailyReportState

@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
-import { ActionTypes } from "../actions/actionTypes";
 import { DailyReportActions } from "../actions/actions";
+import { ActionTypes } from "../actions/actionTypes";
 
 export interface IDailyReport {
     userId: string,

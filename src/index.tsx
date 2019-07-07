@@ -1,15 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { Store } from "redux";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
+import configureStore, { IAppState } from "./store";
 
 import "./index.css";
-
-import { Provider } from "react-redux"
-
-import { Store } from "redux";
-
-import configureStore, { IAppState } from "./store";
 
 interface IProps {
     store: Store<IAppState>;
