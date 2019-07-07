@@ -9,13 +9,13 @@ import { Provider } from "react-redux"
 
 import { Store } from "redux";
 
-import configureStore, { IAppState } from "./store/store";
-
-const store = configureStore();
+import configureStore, { IAppState } from "./store";
 
 interface IProps {
     store: Store<IAppState>;
 }
+
+const store = configureStore();
 
 const Root: React.SFC<IProps> = props => {
     return (
