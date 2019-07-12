@@ -6,24 +6,22 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { IAppState } from "./reducers";
 import configureStore from "./store";
+import { createBrowserHistory } from "history";
+import { ConnectedRouter } from "react-router-redux";
 
 import "./index.css";
 
-interface IProps {
-    store: Store<IAppState>;
-}
+const history = createBrowserHistory();
+const store = configureStore(history);
 
-const store = configureStore();
-
-const Root: React.SFC<IProps> = props => {
-    return (
-        <Provider store={props.store}>
-            <App />
-        </Provider>
-    )
-}
-
-ReactDOM.render(<Root store={store} />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
