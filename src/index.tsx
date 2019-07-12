@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import { Store } from "redux";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-import configureStore, { IAppState } from "./store";
+import { IAppState } from "./reducers";
+import configureStore from "./store";
 
 import "./index.css";
 

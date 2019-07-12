@@ -1,26 +1,19 @@
 import { applyMiddleware, combineReducers, compose, createStore, Store } from "redux";
 import createSagaMiddleware from 'redux-saga';
-import { dailyReportReducer, IDailyReportState } from "../reducers";
+import { IAppState, rootReducer } from "../reducers";
 import { rootSaga } from "../sagas";
-
-export interface IAppState {
-    readonly dailyReportState: IDailyReportState
-}
-
-const rootReducer = combineReducers<IAppState>({
-    dailyReportState: dailyReportReducer
-});
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancer: typeof compose = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-export default function configureStore(): Store<IAppState> {
+export default function configureStore(preloadedState?: any): Store<IAppState> {
     const store = createStore(
         rootReducer,
-        {}, // initial state
-        composeEnhancer(
-            applyMiddleware(sagaMiddleware)
+        preloadedState,
+        composeWithDevTools(
+            applyMiddleware(
+                sagaMiddleware
+            )
         )
     );
 

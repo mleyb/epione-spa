@@ -1,34 +1,10 @@
-import { Reducer } from "redux";
-import { DailyReportActions } from "../actions/actions";
-import { ActionTypes } from "../actions/actionTypes";
+import { combineReducers } from "redux";
+import { IDailyReportState, dailyReportReducer } from "./dailyReportReducer";
 
-export interface IDailyReport {
-    userId: string,
-    timestamp: number,
-    level: number,
-    notes: string
+export interface IAppState {
+    readonly dailyReportState: IDailyReportState
 }
 
-export interface IDailyReportState {
-    readonly dailyReports: IDailyReport[]
-}
-
-const initialState: IDailyReportState = {
-     dailyReports: []
-}
-
-export const dailyReportReducer: Reducer<IDailyReportState, DailyReportActions> = (
-    state = initialState,
-    action
-) => {
-    switch (action.type) {
-        case ActionTypes.GET_DAILY_REPORTS:
-            return {
-                ...state
-                // TODO
-            };
-
-        default:
-            return state;
-    }
-};
+export const rootReducer = combineReducers<IAppState>({
+    dailyReportState: dailyReportReducer
+});
