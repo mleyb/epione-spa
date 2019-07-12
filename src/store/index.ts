@@ -13,18 +13,19 @@ const rootReducer = combineReducers<IAppState>({
 
 const sagaMiddleware = createSagaMiddleware();
 
+const composeEnhancer: typeof compose = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 export default function configureStore(): Store<IAppState> {
     const store = createStore(
         rootReducer,
         {}, // initial state
-        compose(
-            applyMiddleware(sagaMiddleware),
-            (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+        composeEnhancer(
+            applyMiddleware(sagaMiddleware)
         )
     );
 
     sagaMiddleware.run(rootSaga);
-    
+
     return store;
 }
 
