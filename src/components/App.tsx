@@ -1,12 +1,18 @@
 import React from "react";
+import { History } from "history";
+import { ConnectedRouter } from "connected-react-router";
+import Routes from "./Routes";
 
-import "./App.css";
-
-const App: React.FC = () => {
-  return (
-    <div>
-    </div>
-  );
+interface IAppProps {
+  history: History;
 }
+
+const App: React.FC<IAppProps> = ({ history }: IAppProps) => {
+  return (
+    <ConnectedRouter history={history}>
+      <Routes />
+    </ConnectedRouter>
+  );
+};
 
 export default App;
