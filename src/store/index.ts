@@ -5,6 +5,7 @@ import { rootSaga } from "../sagas";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { History } from "history";
 import { routerMiddleware } from "react-router-redux";
+import { logger } from "redux-logger";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,7 +17,7 @@ export default function configureStore(
     rootReducer(history),
     preloadedState,
     composeWithDevTools(
-      applyMiddleware(sagaMiddleware, routerMiddleware(history))
+      applyMiddleware(sagaMiddleware, routerMiddleware(history), logger)
     )
   );
 
